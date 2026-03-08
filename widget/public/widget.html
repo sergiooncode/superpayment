@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: transparent;
+        }
+        .widget-form {
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+        }
+        h2 { margin-bottom: 20px; font-size: 20px; }
+        label {
+            display: block;
+            margin-bottom: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        input:focus { outline: none; border-color: #4a90d9; }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4a90d9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover { background: #357abd; }
+    </style>
+</head>
+<body>
+    <form class="widget-form" id="voucher-form">
+        <h2>Apply Voucher</h2>
+        <label for="voucher">Voucher</label>
+        <input type="text" id="voucher" name="voucher" placeholder="Enter voucher" required>
+        <label for="code">Code</label>
+        <input type="text" id="code" name="code" placeholder="Enter code" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('voucher-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const voucher = document.getElementById('voucher').value;
+            const code = document.getElementById('code').value;
+
+            fetch('http://localhost:8000/api/vouchers/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ voucher, code }),
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Request failed');
+                    window.parent.postMessage('voucher-submitted', '*');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

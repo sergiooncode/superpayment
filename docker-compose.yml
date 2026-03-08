@@ -1,0 +1,65 @@
+services:
+  host:
+    build: ./host
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./host:/app
+      - /app/node_modules
+
+  widget:
+    build: ./widget
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./widget:/app
+      - /app/node_modules
+
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+
+  prestashop:
+    profiles: [prestashop]
+    image: prestashop/prestashop:8-apache
+    ports:
+      - "8080:80"
+    environment:
+      DB_SERVER: prestashop-db
+      DB_NAME: prestashop
+      DB_USER: root
+      DB_PASSWD: prestashop
+      PS_INSTALL_AUTO: 1
+      PS_DOMAIN: localhost:8080
+      PS_FOLDER_ADMIN: admin123
+      PS_COUNTRY: ES
+      PS_LANGUAGE: en
+      ADMIN_MAIL: admin@ealyx.local
+      ADMIN_PASSWD: Admin123!
+    depends_on:
+      prestashop-db:
+        condition: service_healthy
+    volumes:
+      - prestashop-data:/var/www/html
+      - ./prestashop/inject-widget.sh:/tmp/inject-widget.sh
+
+  prestashop-db:
+    profiles: [prestashop]
+    image: mariadb:10.11
+    environment:
+      MYSQL_ROOT_PASSWORD: prestashop
+      MYSQL_DATABASE: prestashop
+    volumes:
+      - prestashop-db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-pprestashop"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  prestashop-data:
+  prestashop-db-data:

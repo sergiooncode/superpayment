@@ -1,0 +1,14 @@
+.widget-open-btn {
+    padding: 12px 24px;
+    background: #4a90d9;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: system-ui, sans-serif;
+}
+
+.widget-open-btn:hover {
+    background: #357abd;
+}

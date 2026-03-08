@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Checkout</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; background: #f5f5f5; }
+        .checkout {
+            max-width: 600px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { margin-bottom: 24px; font-size: 24px; }
+        .order-summary { margin-bottom: 32px; color: #555; }
+        .order-summary p { margin-bottom: 8px; }
+        #widget-container { margin-top: 24px; }
+        .confirmation {
+            background: #e8f5e9;
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 16px;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout">
+        <h1>Checkout</h1>
+        <div class="order-summary">
+            <p>Order #1234</p>
+            <p>Total: 150.00 EUR</p>
+        </div>
+        <div id="widget-container">
+            <div class="widget-trigger" data-type="button"></div>
+        </div>
+        <div id="confirmation" class="confirmation" style="display:none;">
+            Voucher submitted successfully!
+        </div>
+    </div>
+
+    <script>
+        var widgetConfiguration = {
+            baseAssetsUrl: "http://localhost:3001",
+            widgetUrl: "http://localhost:3001",
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.appendChild(document.createTextNode(`
+                import { Widget } from '${widgetConfiguration.baseAssetsUrl}/js/main.js';
+                window.Widget = Widget;
+            `));
+            document.head.appendChild(script);
+        });
+
+        window.addEventListener("widget-voucher-submitted", function () {
+            document.getElementById("confirmation").style.display = "block";
+        });
+    </script>
+</body>
+</html>
