@@ -1,2 +1,0 @@
-django>=5.1,<6.0
-django-cors-headers>=4.6,<5.0
