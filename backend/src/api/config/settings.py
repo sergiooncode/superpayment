@@ -1,6 +1,6 @@
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = 'dev-secret-key-not-for-production'
 
@@ -16,7 +16,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'vouchers',
+    'api.vouchers',
 ]
 
 MIDDLEWARE = [
@@ -29,7 +29,7 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'api.config.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        'vouchers': {
+        'api.vouchers': {
             'handlers': ['console'],
             'level': 'INFO',
         },

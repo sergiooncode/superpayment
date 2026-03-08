@@ -1,4 +1,4 @@
-.PHONY: test-widget up down build migrate createsuperuser collectstatic logs start prestashop inject-widget
+.PHONY: test test-widget test-backend up down build migrate createsuperuser collectstatic logs start prestashop inject-widget
 
 start: build up migrate collectstatic
 
@@ -33,6 +33,11 @@ prestashop:
 
 inject-widget:
 	docker compose --profile prestashop exec prestashop bash /tmp/inject-widget.sh
+
+test: test-backend test-widget
+
+test-backend:
+	docker compose exec backend uv run --group dev pytest
 
 test-widget:
 	docker compose run --rm widget npm test

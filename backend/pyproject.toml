@@ -7,3 +7,13 @@ dependencies = [
     "django>=6.0.3",
     "django-cors-headers>=4.6,<5.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-django",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "api.config.settings"
+pythonpath = ["src"]
