@@ -7,6 +7,7 @@
 In one sentence: "Buy-back partners fund vouchers by committing to purchase shoppers' used items, shoppers use those vouchers
 as payment at merchant checkouts, and SuperFintech takes a commission for facilitating the transaction."
 
+The players:
   - Shopper — wants to offset the cost of a new purchase with their old item, maybe they weren't counting on that offset
 so they can buy an upgraded item model compared to the item they initially thought so they are really happy 
   - Merchant — wants to increase conversion and average order value by offering trade-in at checkout without losing margin
@@ -32,19 +33,20 @@ merchant (minus a commission), and the buy-back partner receives the old item to
   - Logistics integration = the physical item actually gets to the buy-back partner without SuperFintech touching it
   - Notification + Webhooks = merchants and partners can integrate into their own systems
 
-**Important note**
+<br>
 
-At the beginning, SuperFintech would likely need to hold the voucher value in escrow and pay merchants right away. That’s
+- **Important note**:
+  At the beginning, SuperFintech would likely need to hold the voucher value in escrow and pay merchants right away. That’s
 part of what makes the product compelling when the platform is still new and trust is low.
 
-To mitigate the risk of shoppers never shipping their old item or sending one in worse condition than declared, the terms
+  To mitigate the risk of shoppers never shipping their old item or sending one in worse condition than declared, the terms
 and conditions would include a clawback clause allowing SuperFintech to charge the voucher amount back to the shopper’s
 card. This is what makes the escrow model sustainable from day one.
 
-As transaction volume grows and buy-back partners become more comfortable with the model, they can start pre-funding wallets
+  As transaction volume grows and buy-back partners become more comfortable with the model, they can start pre-funding wallets
 that voucher payments draw from. That shifts more of the capital burden away from SuperFintech.
 
-Later on, once partners have a solid track record, the model can move to credit lines with net settlement terms. At that point,
+  Later on, once partners have a solid track record, the model can move to credit lines with net settlement terms. At that point,
 SuperFintech is no longer carrying as much capital risk itself and becomes more of an infrastructure and facilitation layer
 earning commission, which is where the economics improve.
 
