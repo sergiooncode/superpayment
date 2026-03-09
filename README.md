@@ -49,9 +49,7 @@ SuperFintech is no longer carrying as much capital risk itself and becomes more 
 earning commission, which is where the economics improve.
 
 #### 3. You only need to be specific about one little part of the system:
-- What needs to be integrated into the e-commerce platform (not limited to the checkout)?
-- What APIs are required for that integration?
-- No need for diagrams here.
+- What needs to be integrated into the e-commerce platform (not limited to the checkout)? What APIs are required for that integration? No need for diagrams here.
 
 It's needed to integrate into the e-commerce platform: 
 - Product pages — show estimated trade-in value ("Trade in your old one, save up to €150")
@@ -69,13 +67,12 @@ It's needed to integrate into the e-commerce platform:
 
 
 #### 4. Platforms & frameworks
-- What tech should we use? What should we avoid? Why?
-- No need for diagrams here.
+- What tech should we use? What should we avoid? Why? No need for diagrams here.
 
-- Use: Python/Django (already proven, strong fintech ecosystem), PostgreSQL (ACID transactions — essential for money), Redis
-   (caching, rate limiting), a message queue for async settlement and notifications. Keep the widget as vanilla JS to avoid
-  conflicts with merchant sites. Use proven payment rails like Stripe Connect or Adyen for Platforms for actual fund movement.
+Use: Python/Django (already proven, strong fintech ecosystem), PostgreSQL (ACID transactions — essential for money), Redis
+(caching, rate limiting), a message queue for async settlement and notifications. Keep the widget as vanilla JS to avoid
+conflicts with merchant sites. Use proven payment rails like Stripe Connect or Adyen for Platforms for actual fund movement.
 
-- Avoid: Microservices too early — a monolith handles this scale fine with a small team. NoSQL for transactional data —
-  eventual consistency and money don't mix. Heavy JS frameworks in the widget — they'd bloat it and clash with merchant
-  sites.
+Avoid: Microservices too early — a monolith handles this scale fine with a small team. NoSQL for transactional data —
+eventual consistency and money don't mix. Heavy JS frameworks in the widget — they'd bloat it and clash with merchant
+sites.
