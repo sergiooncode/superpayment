@@ -78,3 +78,22 @@ conflicts with merchant sites. Use proven payment rails like Stripe Connect or A
 Avoid: Microservices too early — a monolith handles this scale fine with a small team. NoSQL for transactional data —
 eventual consistency and money don't mix. Heavy JS frameworks in the widget — they'd bloat it and clash with merchant
 sites.
+
+## Part 1: Coding Challenge
+
+#### How to run:
+
+- Run the following to get backend and host and widget up and running:
+```
+make up
+```
+
+- Run backend migrations:
+```
+make migrate
+```
+
+- Run prestashop app:
+```
+make prestashop
+```
